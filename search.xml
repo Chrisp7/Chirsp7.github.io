@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[hexo]]></title>
+      <url>http://yoursite.com/2017/01/21/First-Record/</url>
+      <content type="html"><![CDATA[<h1 id="安装hexo所遇问题"><a href="#安装hexo所遇问题" class="headerlink" title="安装hexo所遇问题"></a>安装hexo所遇问题</h1><h2 id="hexo-目录"><a href="#hexo-目录" class="headerlink" title="hexo 目录"></a>hexo 目录</h2><p><strong>/Users/CP/.nvm/versions/node/v6.9.4/lib/node_modules/hexo-cli/bin/hexo</strong></p>
+<h2 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h2><p>对于每一次的部署我们知道都是同样的三个命令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$hexo</span> clean</div><div class="line"><span class="variable">$hexo</span> generate</div><div class="line"><span class="variable">$hexo</span> deploy</div></pre></td></tr></table></figure></p>
+<p>于是可以选择用脚本执行。在我将其写进脚本后发现并不能执行。用l命令查看后只有可读可写权限，光头告诉我要修改权限，让他可执行。很久没用chmod命令，这次光头一提醒发现他的参数确实很容易记，就是(u/g/o)+(r/w/x) 然后跟文件名即可。如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod u+x filename</div></pre></td></tr></table></figure></p>
+<h2 id="command-not-found-hexo"><a href="#command-not-found-hexo" class="headerlink" title="command not found : hexo"></a>command not found : hexo</h2><p>当我第二天准备重新使用前一天写的脚本来自动化的部署一次我的md文件时，却报出来<code>command not found : hexo</code> 我的第一反应是难道昨天用npm装了那么多次的hexo又没了？于是当我尝试用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure></p>
+<p>他又报错 <code>command not found : npm</code> 此时我已不只是怀疑hexo出了问题。显然npm是和node一起装的，我又用同样的方式检查了一遍node。果然又出现<code>command not found : node</code><br>这才明白是从node这儿出了问题。<br>google之后，发现正常的安装node后他会出现在/usr/local/bin中，然而当我去检查时却发现并没有node。我想起之前是用nvm安装的node，并且之前我有记录hexo的路径，打开hexo所在文件夹果然node就在里面。于是我将node所在目录写进了.bash_profile.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH=$PATH:$HOME/.nvm/versions/node/v6.9.4/bin'</span> &gt;&gt; <span class="variable">$HOME</span>/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>生效过后，发现node可以用了。npm 和 hexo 的问题也都解决了。</p>
+<p>由此问题以后看到<code>command not found : xxx</code>便可知道一定是你的PATH里没有放你要用的命令的路径，并且这儿命令如果是后来装的，那么他大多会出现在/usr/local/bin下 因为mac下这个目录就是用来保存你后期用brew或者其他方式下载的可执行命令。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Technology </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> learning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
