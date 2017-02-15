@@ -36,12 +36,6 @@
 <p>由此问题以后看到<code>command not found : xxx</code>便可知道一定是你的PATH里没有放你要用的命令的路径，并且这儿命令如果是后来装的，那么他大多会出现在/usr/local/bin下 因为mac下这个目录就是用来保存你后期用brew或者其他方式下载的可执行命令。</p>
 ]]></content>
       
-        <categories>
-            
-            <category> Technology </category>
-            
-        </categories>
-        
         
         <tags>
             
