@@ -94,7 +94,7 @@
 <meta property="og:description" content="安装hexo所遇问题hexo 目录/Users/CP/.nvm/versions/node/v6.9.4/lib/node_modules/hexo-cli/bin/hexo
 修改权限对于每一次的部署我们知道都是同样的三个命令。123$hexo clean$hexo generate$hexo deploy
 于是可以选择用脚本执行。在我将其写进脚本后发现并不能执行。用l命令查看后只有可读可写权限，">
-<meta property="og:updated_time" content="2017-02-15T15:48:33.000Z">
+<meta property="og:updated_time" content="2017-02-15T16:01:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="problem using hexo">
 <meta name="twitter:description" content="安装hexo所遇问题hexo 目录/Users/CP/.nvm/versions/node/v6.9.4/lib/node_modules/hexo-cli/bin/hexo
@@ -423,6 +423,7 @@
 <h2 id="command-not-found-hexo"><a href="#command-not-found-hexo" class="headerlink" title="command not found : hexo"></a>command not found : hexo</h2><p>当我第二天准备重新使用前一天写的脚本来自动化的部署一次我的md文件时，却报出来<code>command not found : hexo</code> 我的第一反应是难道昨天用npm装了那么多次的hexo又没了？于是当我尝试用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure></p>
 <p>他又报错 <code>command not found : npm</code> 此时我已不只是怀疑hexo出了问题。显然npm是和node一起装的，我又用同样的方式检查了一遍node。果然又出现<code>command not found : node</code><br>这才明白是从node这儿出了问题。<br>google之后，发现正常的安装node后他会出现在/usr/local/bin中，然而当我去检查时却发现并没有node。我想起之前是用nvm安装的node，并且之前我有记录hexo的路径，打开hexo所在文件夹果然node就在里面。于是我将node所在目录写进了.bash_profile.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH=$PATH:$HOME/.nvm/versions/node/v6.9.4/bin'</span> &gt;&gt; <span class="variable">$HOME</span>/.bash_profile</div></pre></td></tr></table></figure></p>
 <p>生效过后，发现node可以用了。npm 和 hexo 的问题也都解决了。</p>
+<p>但是后来我发现，这似乎又牵扯到了另一个问题。</p>
 <p>由此问题以后看到<code>command not found : xxx</code>便可知道一定是你的PATH里没有放你要用的命令的路径，并且这儿命令如果是后来装的，那么他大多会出现在/usr/local/bin下 因为mac下这个目录就是用来保存你后期用brew或者其他方式下载的可执行命令。</p>
 
       
@@ -452,22 +453,6 @@
         </div>
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/15/test-md/" rel="next" title="test.md">
-                <i class="fa fa-chevron-left"></i> test.md
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -557,7 +542,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -566,7 +551,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -575,7 +560,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
