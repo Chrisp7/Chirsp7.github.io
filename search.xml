@@ -7,7 +7,7 @@
       <title><![CDATA[个人markdwon常用语法]]></title>
       <url>http://chrisp7.github.io/2017/02/16/%E4%B8%AA%E4%BA%BAmarkdwon%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="markdown常用语法"><a href="#markdown常用语法" class="headerlink" title="markdown常用语法"></a>markdown常用语法</h1><h2 id="1、-用-区分标题级别"><a href="#1、-用-区分标题级别" class="headerlink" title="1、 用#区分标题级别"></a>1、 用<code>#</code>区分标题级别</h2><p>markdown支持6级标题，一级标题是一个<code>#</code>，以此类推，六级标题就是六个<code>#</code></p>
-<h2 id="2、强调"><a href="#2、强调" class="headerlink" title="2、强调"></a>2、强调</h2><p>两个 <em> 或者 - 代表加粗，一个 </em> 或 - 表示斜体</p>
+<h2 id="2、强调"><a href="#2、强调" class="headerlink" title="2、强调"></a>2、强调</h2><p>两个 <code>*</code> 或者 <code>-</code> 代表加粗，一个 <code>*</code> 或 <code>-</code> 表示斜体</p>
 <p>效果：<strong>加粗文本</strong>，<em>斜体文本</em></p>
 <h2 id="3、无序-amp-有序列表"><a href="#3、无序-amp-有序列表" class="headerlink" title="3、无序&amp;有序列表"></a>3、无序&amp;有序列表</h2><p>无序列表使用-、+、*<br>有序列表使用数字加英文句点 </p>
 <p>效果：</p>
@@ -61,6 +61,12 @@
 <blockquote>
 <p><strong><code>注意</code></strong><br>这里在新建了页面后，hexo会在对应的目录下新建一个index.md的文件，你需要在front-matter里面加上一行type属性，以指名他对应的menu</p>
 </blockquote>
+<hr>
+<h2 id="引用图片"><a href="#引用图片" class="headerlink" title="引用图片"></a>引用图片</h2><p>对于文章中只有少量图片的情况，只需将图片放在source/images文件夹即可。然后使用 <code>![] (/images/image.jpg)</code> 引用图片即可<br>对于有多张图片的情况，建议集中管理。首先先到_config.yml 设置</p>
+<blockquote>
+<p>_config.yml<br>post_asset_folder: true</p>
+</blockquote>
+<h2 id="结束引用"><a href="#结束引用" class="headerlink" title="结束引用"></a>结束引用</h2><p>如果想结束引用，只要连按两下回车就行。</p>
 ]]></content>
       
         <categories>
