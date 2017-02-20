@@ -66,7 +66,7 @@
 <blockquote>
 <p>_config.yml<br>post_asset_folder: true</p>
 </blockquote>
-<p>此时资源文件管理功能打开，以后每次用hexo new [layout] “xxx” 新建文章时，都会在source文件夹下新建一个和你命名的markdown文件同名的资源文件夹，然后与这篇文章所有相关的资源文件都可以放在这里，然后用标签插件进行引用。如：</p>
+<p>此时资源文件管理功能打开，以后每次用hexo new [layout] “xxx” 新建文章时，都会在你新建的markdown文件同一个文件夹下新建一个和你命名的markdown文件同名的资源文件夹，然后与这篇文章所有相关的资源文件都可以放在这里，然后用标签插件进行引用。如：</p>
 <blockquote>
 
 </blockquote>
