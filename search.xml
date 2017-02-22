@@ -4,6 +4,94 @@
   
     
     <entry>
+      <title><![CDATA[NetEase java curriculum]]></title>
+      <url>http://chrisp7.github.io/2017/02/22/netease-java-curriculum/</url>
+      <content type="html"><![CDATA[<h1 id="Java-web"><a href="#Java-web" class="headerlink" title="Java web"></a>Java web</h1><h2 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h2><ul>
+<li>本身tomcat也是java写的，需要java虚拟机，所以tomcat在启动时可以加一些java的参数</li>
+<li>通过环境变量JAVA_OPTS可以给加一些启动参数</li>
+</ul>
+<h3 id="tomcat组成与架构"><a href="#tomcat组成与架构" class="headerlink" title="tomcat组成与架构"></a>tomcat组成与架构</h3><ul>
+<li>最重要的就是conf下的server.xml文件<ul>
+<li>server 根节点<ul>
+<li>service 可以有多个service<ul>
+<li>connector 用来接受用户请求的，看过就知道他配置了哪个端口处理哪个协议</li>
+<li>engine 对于一个service只能有一个，他用来处理connector接收到的一些请求的，包括我们平时写的一些代码都是由engine来执行<ul>
+<li>host 在engine里可以有多个host，表示虚拟主机，一般一个ip加一个端口组成一个对。然后我们在请求里加上不同的host头来决定具体路由到哪个host来处理。<ul>
+<li>context 一个context就是一个web应用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一个service就是一个容器（container）</li>
+<li>tomcat中实现容器（container）的组件是catalina，最终我们的代码都是由catalina里面的代码来执行的</li>
+<li>具体到每个参数<ul>
+<li>connector <ul>
+<li>有个address参数，他指明了这个容器将要监听到IP地址。因为一个服务器将会有多个IP地址，如果不进行配置，他默认将对所有的IP地址进行监听，而这处于安全方面的考量是不被允许的</li>
+<li>protocol 指名用什么协议，一般开发不会更改，到后面性能调优的时候会有涉及</li>
+<li>acceptCount 这个参数是用来指明当所有线程都用来处理请求，你的等待队列的长度。有点像理发师那个程序里buffer的长度。</li>
+<li>maxConnections 最大连接数。需要注意的是他是和你能生成的最大线程数相关的。当你把他的值设为-1的时候表示不限制最大连接数。当然，你虽然设置了-1，但是最大连接数还是要受其他资源的限制。也就是说还是会有最大连接数的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程池 传统的请求响应方式是你来一个请求，我创建一个线程，建立一个连接，处理这个请求。等请求结束就回收这次的资源。但是这将遇到一个问题就是非常地耗时，因为每次都建立和销毁都是要时间的。所以机智的人类想出来一个方法就是我先提前创建一些线程放在线程池，然后有请求来就响应，响应结束后并不销毁。这就好像医院里面的挂号服务，不管你有没有病人来，挂号窗口都是有服务人员的。<ul>
+<li>他的配置项是<executor></executor></li>
+<li>最小空闲线程数（minSpareThreads） 用来设置线程池最小的线程数。这就好比医院要求的挂号服务在一般情况下最少要有多少个窗口有人值班。</li>
+<li>最大线程数 （maxThreads） 用来表示这个线程池能接受的最大线程数。同样类比到挂号服务，就是最多能有多少窗口同时开启工作。之后来的人就得等待。</li>
+<li>这两个参数可以直接配置在connector里面，也可以单独的配在Executor里面，然后在connector里面指定依赖关系。</li>
+<li>这两个参数构成了另一个概念，弹性线程池。当多于minSpareThreads规定的请求数的时候就会创建其他线程到线程池处理请求，直到创建到最大值。当只有少数请求时，就只开minSpareThreads规定的线程数在线程池。</li>
+</ul>
+</li>
+<li>日志<ul>
+<li>日志分类<ul>
+<li>系统运行日志 记录tomcat运行状态，结果等。会捕获一些异常</li>
+<li>访问日志 记录所有的请求</li>
+<li>应用日志 用户自己写的</li>
+</ul>
+</li>
+<li>配置访问日志 也是在server.xml里面配置<ul>
+<li>在标签Valve里面配置</li>
+<li>prefix 指定了你日志命名的开头</li>
+<li>suffix 指定日志命名的结尾</li>
+<li>pattern 指名日志里面每一条记录所记录的东西<ul>
+<li>请求方法是%m ，客户端IP是 %a ，请求时间是 %t ，请求方法是%r ，状态码是%s ，客户端代理是%{User-agent}i<br>*fileDateFormat 他常常搭配另一个参数rotatable，当rotatable为true时，fileDateFormat指定了日志以怎样的格式切割。（日志文件切割的意义在于使日志文件不至于过大，这样不至于你检索和查看都会很慢。）如：fileDateFormat: yyyy-MM-dd.时，日志就会每天滚动一次，如果设置成yyyy-MM-dd.HH.那么他每小时就会滚动一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2><ol>
+<li>当你在做服务端开发，需要修改一些配置文件的时候一定要记得备份。可以直接使用如：cp server.xml server.xml.bak命令</li>
+<li>访问网址不一定要用chrome，在终端就可以用curl命令。如：curl <a href="http://baidu.com" target="_blank" rel="external">http://baidu.com</a></li>
+<li>telnet可以实现发请求发一半，实现占着一个线程的效果</li>
+<li>在linux系统中终端里想看文本内容，可以用cat命令</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Technology </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work_orientated </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[个人markdown常用语法]]></title>
       <url>http://chrisp7.github.io/2017/02/16/%E4%B8%AA%E4%BA%BAmarkdwon%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="Markdown常用语法"><a href="#Markdown常用语法" class="headerlink" title="Markdown常用语法"></a>Markdown常用语法</h1><h2 id="1、-用-区分标题级别"><a href="#1、-用-区分标题级别" class="headerlink" title="1、 用#区分标题级别"></a>1、 用<code>#</code>区分标题级别</h2><p>markdown支持6级标题，一级标题是一个<code>#</code>，以此类推，六级标题就是六个<code>#</code></p>
