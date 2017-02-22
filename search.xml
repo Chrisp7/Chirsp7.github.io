@@ -6,11 +6,11 @@
     <entry>
       <title><![CDATA[NetEase java curriculum]]></title>
       <url>http://chrisp7.github.io/2017/02/22/netease-java-curriculum/</url>
-      <content type="html"><![CDATA[<h1 id="Java-web"><a href="#Java-web" class="headerlink" title="Java web"></a>Java web</h1><h2 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h2><ul>
+      <content type="html"><![CDATA[<h1 id="Java-web"><a href="#Java-web" class="headerlink" title="Java web"></a>Java web</h1><h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><ul>
 <li>本身tomcat也是java写的，需要java虚拟机，所以tomcat在启动时可以加一些java的参数</li>
 <li>通过环境变量JAVA_OPTS可以给加一些启动参数</li>
 </ul>
-<h3 id="tomcat组成与架构"><a href="#tomcat组成与架构" class="headerlink" title="tomcat组成与架构"></a>tomcat组成与架构</h3><ul>
+<h3 id="Tomcat组成与架构"><a href="#Tomcat组成与架构" class="headerlink" title="Tomcat组成与架构"></a>Tomcat组成与架构</h3><ul>
 <li>最重要的就是conf下的server.xml文件<ul>
 <li>server 根节点<ul>
 <li>service 可以有多个service<ul>
