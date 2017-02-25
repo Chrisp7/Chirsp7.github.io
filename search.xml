@@ -73,6 +73,12 @@
 <li>访问网址不一定要用chrome，在终端就可以用curl命令。如：curl <a href="http://baidu.com" target="_blank" rel="external">http://baidu.com</a></li>
 <li>telnet可以实现发请求发一半，实现占着一个线程的效果</li>
 <li>在linux系统中终端里想看文本内容，可以用cat命令</li>
+<li>解压tar.gz文件使用命令 tar xvzf xxx.tar.gz</li>
+<li>希望在终端打包成一个war包。可以使用命令：jar cvf xxx.war . （别忘了后面有个点，代表当前路径）</li>
+<li>如果希望使用剪切的效果。那就使用mv命令啊，别用cp命令</li>
+<li>可以使用javac -cp apache-tomcat/lib/servlet-api.jar WEB-INF/xxx.java 的方式指定用某个api编译某个Java文件，将其编译为class文件</li>
+<li>add external jar jar包没有拷贝进项目 add jar jar包拷贝进了项目</li>
+<li></li>
 </ol>
 ]]></content>
       
