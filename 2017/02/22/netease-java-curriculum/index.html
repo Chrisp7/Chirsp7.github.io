@@ -106,7 +106,7 @@ Tomcat组成与架构
 server 根节点
 service 可以有多个service
 connector 用来接受用户请求的，看过就知道他配置了哪个端口处理哪个">
-<meta property="og:updated_time" content="2017-02-25T02:12:17.000Z">
+<meta property="og:updated_time" content="2017-02-26T00:44:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NetEase Java Curriculum">
 <meta name="twitter:description" content="Java webTomcat
@@ -506,6 +506,23 @@ connector 用来接受用户请求的，看过就知道他配置了哪个端口�
 </ul>
 </li>
 </ul>
+<h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><ul>
+<li>groupId 组织名 一般就是用你项目包的前缀命名，如：com.chrisp7</li>
+<li>artifactId 项目标识符，一般就是写项目名字。不要加点。</li>
+<li>version 版本 一般都是x.y.z这样的格式。如果你是在开发过程中，那么可以在后面加上一个SNAPSHOT，这样maven会根据这个判断出他是一个在开发的版本。这样maven在你不改版本号的情况下也能判断出哪个新哪个旧。因为她会根据SNAPSHOT自动的打上时间戳。<blockquote>
+<p>groupId artifactId version 是maven中一个项目的坐标，通过这个三个值可以唯一的定位一个项目。这三个的值不能重复。</p>
+</blockquote>
+</li>
+<li>package 类型，如：war<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3></li>
+<li>mvn archetype:generate 根据模板生成项目</li>
+<li>mvn compile 编译源代码</li>
+<li>mvn test 跑测试</li>
+<li>mvn package 打包</li>
+<li>mvn 生成项目相关的站点，在线文档</li>
+<li>mvn install 将包安装到本地仓库，让其他项目进行依赖<h3 id="使用maven"><a href="#使用maven" class="headerlink" title="使用maven"></a>使用maven</h3></li>
+<li>使用maven:generate后maven会自动为你生成一些目录，而你的Java文件必须写在src下的java文件中，就像这样</li>
+<li></li>
+</ul>
 <h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2><ol>
 <li>当你在做服务端开发，需要修改一些配置文件的时候一定要记得备份。可以直接使用如：cp server.xml server.xml.bak命令</li>
 <li>访问网址不一定要用chrome，在终端就可以用curl命令。如：curl <a href="http://baidu.com" target="_blank" rel="external">http://baidu.com</a></li>
@@ -718,7 +735,7 @@ connector 用来接受用户请求的，看过就知道他配置了哪个端口�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-web"><span class="nav-number">1.</span> <span class="nav-text">Java web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat"><span class="nav-number">1.1.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat组成与架构"><span class="nav-number">1.1.1.</span> <span class="nav-text">Tomcat组成与架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践中的一些心得"><span class="nav-number">1.2.</span> <span class="nav-text">实践中的一些心得</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-web"><span class="nav-number">1.</span> <span class="nav-text">Java web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat"><span class="nav-number">1.1.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat组成与架构"><span class="nav-number">1.1.1.</span> <span class="nav-text">Tomcat组成与架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven"><span class="nav-number">1.2.</span> <span class="nav-text">Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.2.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本命令"><span class="nav-number">1.2.2.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用maven"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用maven</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践中的一些心得"><span class="nav-number">1.3.</span> <span class="nav-text">实践中的一些心得</span></a></li></ol></li></ol></div>
             
 
           </div>
