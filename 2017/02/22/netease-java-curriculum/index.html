@@ -107,7 +107,7 @@ server 根节点
 service 可以有多个service
 connector 用来接受用户请求的，看过就知道他配置了哪个端口处理哪个">
 <meta property="og:image" content="http://chrisp7.github.io/2017/02/22/netease-java-curriculum/maven_directory.png">
-<meta property="og:updated_time" content="2017-02-27T01:51:51.000Z">
+<meta property="og:updated_time" content="2017-02-27T16:14:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NetEase Java Curriculum">
 <meta name="twitter:description" content="Java webTomcat
@@ -525,7 +525,41 @@ connector 用来接受用户请求的，看过就知道他配置了哪个端口�
 <li>使用maven:generate后maven会自动为你生成一些目录，而你的Java文件必须写在src下的java文件中，就像这样<img src="/2017/02/22/netease-java-curriculum/maven_directory.png" alt="This is maven directory" title="This is maven directory"></li>
 <li>mvn archetype:generate 后面要跟很多参数，这些指定了你pom.xml里面的一些东西。其中需要注意的一个参数是DarchetypeArtifactId，如果是webapp，那么这里得是maven-archetype-webapp。如果是一个普通的Java项目，那么就得写成maven-archetype-quickstart</li>
 <li>在maven中可以添加一个插件tomcat7，他是集成在maven里面的tomcat。如果你还没用IDE那么这将极大的简化项目的部署。只需要一个指令mvn tomcat7:run即可完成所有。当然，如果你使用IDE这些都可以忽略。</li>
-<li><h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2></li>
+<li>普通的Java项目得有一个resources文件夹在main文件夹下</li>
+<li>当用pom来管理多个项目使其形成依赖时，需要在子项目中的pom中指定依赖关系，需要指明groupId,artifactId,version,relativePath.四个标签。同时也需要在最顶层的pom文件中指定有哪些子项目。也就是modules标签。</li>
+<li>在pom.xml中，不严肃的说，一个构建就可以等价为一个项目,即project=artifact.</li>
+<li>在pom中可以得到哪些信息<ul>
+<li>项目类型（package指定）</li>
+<li>坐标</li>
+<li>属性（￥{property}）</li>
+<li>依赖</li>
+<li>构建配置（configuration）</li>
+<li>多项目，继承</li>
+<li>项目总体信息</li>
+</ul>
+</li>
+<li>pom继承<ul>
+<li>可继承项<ul>
+<li>坐标属性，如groupId.</li>
+<li>依赖配置（比如有些子项目都依赖某个配置，就可以把它放到父pom中）</li>
+<li>插件配置（公共插件配置）</li>
+<li>一般性信息，如开发者信息</li>
+</ul>
+</li>
+<li>java中我们都知道所有的类有一个根，就是Object类，那么在pom中是否也有呢？答案是肯定的。就是Super Pom </li>
+<li>如果你编辑了pom文件没有显示的定义从哪里继承，那么它就是从super pom继承。</li>
+<li>超级Pom定义了一组被所有项目能共享的默认设置<ul>
+<li>默认的文件位置</li>
+<li>统一的插件配置</li>
+<li>默认的中央仓库的位置</li>
+</ul>
+</li>
+<li>显示的配置<ul>
+<li>使用parent元素进行配置<br>+<h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ol>
 <li>当你在做服务端开发，需要修改一些配置文件的时候一定要记得备份。可以直接使用如：cp server.xml server.xml.bak命令</li>
