@@ -134,7 +134,7 @@
 <li>私服</li>
 </ul>
 </li>
-<li>配置setting.xml<br><code>实践中遇到一个问题就是当我将所有的pom删掉，重新写一遍依赖关系以后。在本身pom文件没有问题的情况下，他报了个错误</code>
+<li>配置setting.xml<br><code>实践中遇到一个问题就是当我将所有的pom删掉，重新写一遍依赖关系以后。在本身pom文件没有问题的情况下，他报了个错误</code><img src="/2017/02/22/netease-java-curriculum/could_not_find_artifact.png" alt="could_not_find_artifact.png" title="">
 <code>我前面由于一知半解，并不知道maven的工作流程。所以一直在想怎么才能把这个Kitchen.jar生成出来。但是之前的做法似乎没有单独生成jar包的说法，毕竟所有的步骤都是maven自动完成的，后来经过网上的查阅，才明白maven的执行是要依赖于库的，有些包可以从网上下载，但是我们自己写的包是需要自己放入本地库的，所以也许之前的某个操作使得我把本地库中的Kitchen.jar删除了，现在必须要把他重新放进本地库。要实现这个操作就要在最顶层的pom文件夹执行mvn install命令。</code></li>
 </ul>
 </li>
