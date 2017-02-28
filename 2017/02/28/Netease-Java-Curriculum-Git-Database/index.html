@@ -118,7 +118,8 @@ porod">
 常驻分支
 development-从master创建
 porod">
-<meta property="og:updated_time" content="2017-02-28T08:14:54.000Z">
+<meta property="og:image" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png">
+<meta property="og:updated_time" content="2017-02-28T08:41:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netease Java Curriculum Git&&Database">
 <meta name="twitter:description" content="#Git
@@ -136,6 +137,7 @@ porod">
 常驻分支
 development-从master创建
 porod">
+<meta name="twitter:image" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png">
 
 
 
@@ -522,7 +524,10 @@ porod">
 <li>git log 查看提交历史，更简单的一种方式是git log –oneline</li>
 <li>git config可以用来设置别名：git config alias.shortname <fullcommand></fullcommand></li>
 <li>git diff 直接输入的话是显示工作目录与暂存区的差异。如果git diff –cached 则是显示暂存区与某次提交之间的差异，默认为HEAD，HEAD指向当前的提交</li>
-<li>git checkout –<file> 将文件内容从暂存区复制到工作区</file></li>
+<li>git checkout –<file> 将文件内容从暂存区复制到工作区。<code>相当于撤销对工作区的修改</code></file></li>
+<li>git reset HEAD <file> 将文件内容从上次提交复制到暂存区。<code>相当于撤销了对暂存区的操作</code></file></li>
+<li>git checkout HEAD – <file> 直接将提交区文件复制到工作目录。<code>相当于撤销全部改动</code><img src="/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png" alt="git command flow" title="git command flow">
+</file></li>
 </ul>
 
       
