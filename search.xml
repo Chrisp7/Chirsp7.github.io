@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[NetEase Java Curriculum]]></title>
+      <title><![CDATA[NetEase Java Curriculum -- Tomcat&&Maven]]></title>
       <url>http://chrisp7.github.io/2017/02/22/netease-java-curriculum/</url>
       <content type="html"><![CDATA[<h1 id="Java-web"><a href="#Java-web" class="headerlink" title="Java web"></a>Java web</h1><h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><ul>
 <li>本身tomcat也是java写的，需要java虚拟机，所以tomcat在启动时可以加一些java的参数</li>
@@ -88,7 +88,7 @@
 <li>普通的Java项目得有一个resources文件夹在main文件夹下</li>
 <li>当用pom来管理多个项目使其形成依赖时，需要在子项目中的pom中指定依赖关系，需要指明groupId,artifactId,version,relativePath.四个标签。同时也需要在最顶层的pom文件中指定有哪些子项目。也就是modules标签。</li>
 <li>在pom.xml中，不严肃的说，一个构建就可以等价为一个项目,即project=artifact.</li>
-<li>在pom中可以得到哪些信息<ul>
+<li>在pom中可以得到这些信息<ul>
 <li>项目类型（package指定）</li>
 <li>坐标</li>
 <li>属性（￥{property}）</li>
@@ -98,7 +98,8 @@
 <li>项目总体信息</li>
 </ul>
 </li>
-<li>pom继承<ul>
+<li><p>pom继承</p>
+<ul>
 <li>可继承项<ul>
 <li>坐标属性，如groupId.</li>
 <li>依赖配置（比如有些子项目都依赖某个配置，就可以把它放到父pom中）</li>
@@ -106,8 +107,11 @@
 <li>一般性信息，如开发者信息</li>
 </ul>
 </li>
-<li>java中我们都知道所有的类有一个根，就是Object类，那么在pom中是否也有呢？答案是肯定的。就是Super Pom </li>
-<li>如果你编辑了pom文件没有显示的定义从哪里继承，那么它就是从super pom继承。</li>
+<li>java中我们都知道所有的类有一个根，就是Object类，那么在pom中是否也有呢？答案是肯定的。就是Super Pom</li>
+<li><p>如果你编辑了pom文件没有显示的定义从哪里继承，那么它就是从super pom继承。可以使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-pom</div></pre></td></tr></table></figure>
+<p>查看super pom默认的配置，<code>但是需要注意的的是在这之前你必须保证在同级目录下先创建一个pom文件</code></p>
+</li>
 <li>超级Pom定义了一组被所有项目能共享的默认设置<ul>
 <li>默认的文件位置</li>
 <li>统一的插件配置</li>
@@ -115,13 +119,74 @@
 </ul>
 </li>
 <li>显示的配置<ul>
-<li>使用parent元素进行配置<br>+<h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2></li>
+<li>使用parent元素进行配置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>依赖配置<ul>
+<li>scope</li>
+<li>用于继承的pom配置 dependencyManagement</li>
+<li>依赖哪里寻找？仓库 默认仓库目录在~/.m2/repository</li>
+<li>远程仓库分类 <ul>
+<li>中央仓库</li>
+<li>其他公共仓库（国内使用比较多的开源中国）</li>
+<li>私服</li>
+</ul>
+</li>
+<li>配置setting.xml<br><code>实践中遇到一个问题就是当我将所有的pom删掉，重新写一遍依赖关系以后。在本身pom文件没有问题的情况下，他报了个错误</code>
+<code>我前面由于一知半解，并不知道maven的工作流程。所以一直在想怎么才能把这个Kitchen.jar生成出来。但是之前的做法似乎没有单独生成jar包的说法，毕竟所有的步骤都是maven自动完成的，后来经过网上的查阅，才明白maven的执行是要依赖于库的，有些包可以从网上下载，但是我们自己写的包是需要自己放入本地库的，所以也许之前的某个操作使得我把本地库中的Kitchen.jar删除了，现在必须要把他重新放进本地库。要实现这个操作就要在最顶层的pom文件夹执行mvn install命令。</code></li>
+</ul>
+</li>
+<li>构建声明周期<ul>
+<li>每个阶段执行预先定义的动作</li>
+<li>maven有三个独立的生命周期<ul>
+<li>clean pre-clean post-clean</li>
+<li>default </li>
+<li>site 生成一些文档</li>
+</ul>
+</li>
+<li>默认生命周期<ul>
+<li>validate 检查项目的正确性，验证一些必要信息</li>
+<li>process-resources 将资源文件复制项目中</li>
+<li>compile</li>
+<li>test </li>
+<li>package 编译好的文件打包</li>
+<li>install 将包安装到本地仓库</li>
+<li>deploy 将打包好的文件上传远程仓库，这样其他人也可以用</li>
+</ul>
+</li>
+<li>每个阶段怎么做的？<ul>
+<li>插件式架构</li>
+<li>插件本身也是maven中的构建，由maven仓库管理</li>
+<li>所有功能由插件提供</li>
+<li>插件中有多个目标，每个目标就是一个构建逻辑，你也可以直接指定调用哪个插件的哪个目标来执行。命令：mvn plugin:目标<ul>
+<li>生命周期与目标绑定 </li>
+<li>当你在命令行执行某个命令，也就是某个生命阶段的时候实际上就是调用了某个插件目标。</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<ol>
+</li>
+<li>插件<ul>
+<li>mvn内建插件</li>
+<li>help插件 mvn help:help -Ddetail=true 这个命令告诉你help插件本身的帮助文档、</li>
+<li>tomcat7 可以把tomcat嵌在maven项目中。不需要另外配置了</li>
+<li>exec 简单的将jar包跑起来。<br>…</li>
+</ul>
+</li>
+<li><p>插件配置</p>
+<ul>
+<li><p>configuration配置 通过命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:describe0 -Dplugin=&lt;plugin_name&gt; -Dgoal=&lt;goal&gt; -Ddetail=<span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>可以查看某个插件的某个目标能指定哪些配置项</p>
+</li>
+<li>插件也可以继承，把要公用，也就是继承的插件放到pluginManagement标签就行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="实践中的一些心得"><a href="#实践中的一些心得" class="headerlink" title="实践中的一些心得"></a>实践中的一些心得</h2><ol>
 <li>当你在做服务端开发，需要修改一些配置文件的时候一定要记得备份。可以直接使用如：cp server.xml server.xml.bak命令</li>
 <li>访问网址不一定要用chrome，在终端就可以用curl命令。如：curl <a href="http://baidu.com" target="_blank" rel="external">http://baidu.com</a></li>
 <li>telnet可以实现发请求发一半，实现占着一个线程的效果</li>
