@@ -4,6 +4,88 @@
   
     
     <entry>
+      <title><![CDATA[Netease Java Curriculum Git&&Database]]></title>
+      <url>http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/</url>
+      <content type="html"><![CDATA[<p>#Git</p>
+<ul>
+<li>优点<ul>
+<li>相对于svn优势在于他是分布式的，这就意味着你的每一个developer都有一个 完整的历史拷贝在本地仓库。不需要像svn一样担心一旦中央仓库出现问题，就彻底game over。</li>
+<li>因为有一个本地仓库，所以在没有联网的情况下也能进行工作。</li>
+<li>分支的优势</li>
+<li>基于内容寻址的存储系统,<code>记录的是内容，而不是文件</code></li>
+<li></li>
+</ul>
+</li>
+<li><p>分支模型</p>
+<ul>
+<li>常驻分支<ul>
+<li>development-从master创建</li>
+<li>poroduction-也就是master,默认分支</li>
+</ul>
+</li>
+<li>活动分支<ul>
+<li>feature 从development分支创建</li>
+<li>hotfix 从master创建，用于测试</li>
+<li>release 从development分支创建，标识一个产品的正式发布</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>git status</p>
+<ul>
+<li>三个区域<ul>
+<li>工作目录</li>
+<li>暂存区</li>
+<li>提交区</li>
+</ul>
+</li>
+<li>文件状态<ul>
+<li>未跟踪</li>
+<li>已跟踪</li>
+</ul>
+</li>
+<li>git status 命令就是用来帮助我们来了解这些区域的状态。并帮助我们了解这些文件的变化。</li>
+</ul>
+</li>
+<li>git add 就是把指定的文件添加到暂存区，并且该文件从未跟踪变成了已跟踪 （<code>可以通过git add .来添加整个目录的文件</code>）</li>
+<li>忽略文件<ul>
+<li>在添加时忽略匹配的文件</li>
+<li><code>仅仅作用于未追踪的文件！</code>相当于在未跟踪与跟踪之间加了一层过滤。</li>
+</ul>
+</li>
+<li>git rm<ul>
+<li>如果只是想从暂存区删除，使用git rm –cached 即可</li>
+<li>如果希望从暂存区和工作目录一起删除 使用git rm就行</li>
+<li>希望删除所有被跟踪但是在工作目录被删除的文件,使用 git rm $(git ls-files –delete) <code>其中git ls-files列出了所有在暂存区的文件</code></li>
+</ul>
+</li>
+<li>git commit <ul>
+<li>根据暂存区内容完成一次提交</li>
+</ul>
+</li>
+<li>git log 查看提交历史，更简单的一种方式是git log –oneline</li>
+<li>git config可以用来设置别名：git config alias.shortname <fullcommand></fullcommand></li>
+<li>git diff 直接输入的话是显示工作目录与暂存区的差异。如果git diff –cached 则是显示暂存区与某次提交之间的差异，默认为HEAD，HEAD指向当前的提交</li>
+<li>git checkout –<file> 将文件内容从暂存区复制到工作区</file></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Technology </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work_orientated </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[NetEase Java Curriculum -- Tomcat&&Maven]]></title>
       <url>http://chrisp7.github.io/2017/02/22/netease-java-curriculum/</url>
       <content type="html"><![CDATA[<h1 id="Java-web"><a href="#Java-web" class="headerlink" title="Java web"></a>Java web</h1><h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><ul>
