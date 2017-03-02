@@ -119,7 +119,7 @@ porod">
 development-从master创建
 porod">
 <meta property="og:image" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png">
-<meta property="og:updated_time" content="2017-02-28T08:41:47.000Z">
+<meta property="og:updated_time" content="2017-03-02T03:00:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netease Java Curriculum Git&&Database">
 <meta name="twitter:description" content="#Git
@@ -507,7 +507,7 @@ porod">
 </li>
 <li>git add 就是把指定的文件添加到暂存区，并且该文件从未跟踪变成了已跟踪 （<code>可以通过git add .来添加整个目录的文件</code>）</li>
 <li>忽略文件<ul>
-<li>在添加时忽略匹配的文件</li>
+<li>在添加时忽略</li>
 <li><code>仅仅作用于未追踪的文件！</code>相当于在未跟踪与跟踪之间加了一层过滤。</li>
 </ul>
 </li>
@@ -524,10 +524,46 @@ porod">
 <li>git log 查看提交历史，更简单的一种方式是git log –oneline</li>
 <li>git config可以用来设置别名：git config alias.shortname <fullcommand></fullcommand></li>
 <li>git diff 直接输入的话是显示工作目录与暂存区的差异。如果git diff –cached 则是显示暂存区与某次提交之间的差异，默认为HEAD，HEAD指向当前的提交</li>
-<li>git checkout –<file> 将文件内容从暂存区复制到工作区。<code>相当于撤销对工作区的修改</code></file></li>
-<li>git reset HEAD <file> 将文件内容从上次提交复制到暂存区。<code>相当于撤销了对暂存区的操作</code></file></li>
-<li>git checkout HEAD – <file> 直接将提交区文件复制到工作目录。<code>相当于撤销全部改动</code><img src="/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png" alt="git command flow" title="git command flow">
-</file></li>
+<li>git checkout “file” 将文件内容从暂存区复制到工作区。<code>相当于撤销对工作区的修改</code> <ul>
+<li>git check 在本质上实际就是用来移动HEAD这个指针，而HEAD是指向当前的提交。所以他同时也会把当前的工作目录和暂存区移到你指定的版本。也就是会把那个版本的内容复制到工作目录和暂存区。</li>
+</ul>
+</li>
+<li>git reset HEAD “file” 将文件内容从上次提交复制到暂存区。<code>相当于撤销了对暂存区的操作</code></li>
+<li>git checkout HEAD “file” 直接将提交区文件复制到工作目录。<code>相当于撤销全部改动</code><img src="/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png" alt="git work flow" title="git work flow"></li>
+<li>git branch “branchname” 创建一个分支.git branch -d “branchname” 删除一个分支. git branch -v 查看现在所有的分支</li>
+<li>git cheackout <ul>
+<li>git checkout “branchname” 切换到某个分支</li>
+<li>git checkout -b “branchname” 直接创建一个分支，并切换到他</li>
+<li>git checkout 《reference》 也可以将他切换到任何的引用对象上</li>
+<li>git checkout - 回到上一个分支</li>
+</ul>
+</li>
+<li>当你不用分指名作为参数而把提交版本号作为参数传入git checkout时，这时称为detached head。此时应尽量避免提交东西。以为没有引用会指向这个提交记录。只有HEAD而已。当你HEAD重新回到master时，你刚刚所做的提交都会被视为没有被引用。最后会被git的垃圾回收机制回收。<code>所以当处于分离操作时一般不要做写操作，而是读取他的内容</code></li>
+<li>git reset 将当前分支回退到历史某个版本<ul>
+<li>git reset –mixed “commit” （默认）此时他会将当前内容复制到暂存区</li>
+<li>git reset –hard “commit” 同时会将内容复制到工作目录 </li>
+<li>git reset –soft “commit” 暂存区和工作目录不会有任何变化，此时万一是从最新的提交上转移到别的地方，那么那个最新的提交就会丢失了。并且git log已经找不到了。此时可以使用git reflog来解决。他排出了你HEAD切换分支的路径，那么你就可以通过版本号再次定位到那个最新的分支</li>
+</ul>
+</li>
+<li>使用捷径 <ul>
+<li>A^表示A上的父提交</li>
+<li>A~n 表示A之前的第n次提交</li>
+</ul>
+</li>
+<li>git stash save “somemessage”这种情况一般发生在如下情景，就是你在一个分支进行着工作，一直使用着工作区，还没有将改变的内容添加进暂存区，此时突然另一个分支有一个紧急任务需要完成，但是你又没法切换过去因为一旦这样工作区就会被污染，这个命令就给了我们解决办法。她保存了目前的工作目录和暂存区的状态，并返回到干净的工作空间。其实除了之前所说的工作区，暂存区，提交区以外，还有一个就是stash区。<ul>
+<li>git stash list 查看当前stash里有多少保存的内容</li>
+<li>git stash apply stash@{0}可以让保存的内容重新恢复到我们的工作目录</li>
+<li>git stash drop stash@{0} 将记录从stash区域删除</li>
+<li>stash pop= stash apply+stash drop</li>
+</ul>
+</li>
+<li>git merge 合并分支 当你在master分支上时直接后面加上你要合并的分支名就好。<ul>
+<li>当出现冲突后使用git add，然后git commit一下来完成这次冲突的解决</li>
+</ul>
+</li>
+<li>当你在某个节点创建了分支，然后master分支一直没有移动，而是一直在next分支进行操作，然后进行merge时则不会出现想象的那种两种分支合并的效果，而是会把master分支直接指向next分支。还有一种情况就是没有出冲突，也会这样。如此之后我们的提交历史就会变得线性。但是这样会使得我们看提交历史变得不清晰，如果希望不要变得线性，可以使用git merge “branchname” –no-ff命令</li>
+<li>git tag 为某次提交设置一个不变的别名，如某次发布后版本为v0.3那么可以设置这次提交为git tag v0.3 e39d0b2 很显然，第二个参数就是某次提交的哈希。以后直接使用这个标签名就能访问那个版本。</li>
+<li></li>
 </ul>
 
       
@@ -662,7 +698,7 @@ porod">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -671,7 +707,7 @@ porod">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
