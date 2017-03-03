@@ -87,22 +87,17 @@
 <meta name="description" content="Git
 优点
 
-
 相对于svn优势在于他是分布式的，这就意味着你的每一个developer都有一个 完整的历史拷贝在本地仓库。不需要像svn一样担心一旦中央仓库出现问题，就彻底game over。
 因为有一个本地仓库，所以在没有联网的情况下也能进行工作。
 分支的优势
 基于内容寻址的存储系统,记录的是内容，而不是文件
 
 
-
 分支模型
 
-
 常驻分支
-
-
 development-从master创建
-po">
+poroduc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netease Java Curriculum Git&&Database">
 <meta property="og:url" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/index.html">
@@ -110,45 +105,35 @@ po">
 <meta property="og:description" content="Git
 优点
 
-
 相对于svn优势在于他是分布式的，这就意味着你的每一个developer都有一个 完整的历史拷贝在本地仓库。不需要像svn一样担心一旦中央仓库出现问题，就彻底game over。
 因为有一个本地仓库，所以在没有联网的情况下也能进行工作。
 分支的优势
 基于内容寻址的存储系统,记录的是内容，而不是文件
 
 
-
 分支模型
 
-
 常驻分支
-
-
 development-从master创建
-po">
+poroduc">
 <meta property="og:image" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png">
-<meta property="og:updated_time" content="2017-03-03T06:00:53.000Z">
+<meta property="og:updated_time" content="2017-03-03T06:10:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netease Java Curriculum Git&&Database">
 <meta name="twitter:description" content="Git
 优点
 
-
 相对于svn优势在于他是分布式的，这就意味着你的每一个developer都有一个 完整的历史拷贝在本地仓库。不需要像svn一样担心一旦中央仓库出现问题，就彻底game over。
 因为有一个本地仓库，所以在没有联网的情况下也能进行工作。
 分支的优势
 基于内容寻址的存储系统,记录的是内容，而不是文件
 
 
-
 分支模型
 
-
 常驻分支
-
-
 development-从master创建
-po">
+poroduc">
 <meta name="twitter:image" content="http://chrisp7.github.io/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png">
 
 
@@ -477,139 +462,109 @@ po">
 
       
         <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><ul>
-<li>优点</li>
-</ul>
+<li><p>优点</p>
 <ul>
 <li>相对于svn优势在于他是分布式的，这就意味着你的每一个developer都有一个 完整的历史拷贝在本地仓库。不需要像svn一样担心一旦中央仓库出现问题，就彻底game over。</li>
 <li>因为有一个本地仓库，所以在没有联网的情况下也能进行工作。</li>
 <li>分支的优势</li>
 <li>基于内容寻址的存储系统,<code>记录的是内容，而不是文件</code></li>
-<li></li>
 </ul>
+</li>
+<li><p>分支模型</p>
 <ul>
-<li>分支模型</li>
-</ul>
-<ul>
-<li>常驻分支</li>
-</ul>
-<ul>
+<li>常驻分支<ul>
 <li>development-从master创建</li>
 <li>poroduction-也就是master,默认分支</li>
 </ul>
-<ul>
-<li>活动分支</li>
-</ul>
-<ul>
+</li>
+<li>活动分支<ul>
 <li>feature 从development分支创建</li>
 <li>hotfix 从master创建，用于测试</li>
 <li>release 从development分支创建，标识一个产品的正式发布</li>
 </ul>
-<ul>
-<li>git status</li>
+</li>
 </ul>
+</li>
+<li><p>git status</p>
 <ul>
-<li>三个区域</li>
-</ul>
-<ul>
+<li>三个区域<ul>
 <li>工作目录</li>
 <li>暂存区</li>
 <li>提交区</li>
 </ul>
-<ul>
-<li>文件状态</li>
-</ul>
-<ul>
+</li>
+<li>文件状态<ul>
 <li>未跟踪</li>
 <li>已跟踪</li>
 </ul>
-<ul>
+</li>
 <li>git status 命令就是用来帮助我们来了解这些区域的状态。并帮助我们了解这些文件的变化。</li>
 </ul>
-<ul>
+</li>
 <li>git add 就是把指定的文件添加到暂存区，并且该文件从未跟踪变成了已跟踪 （<code>可以通过git add .来添加整个目录的文件</code>）</li>
-<li>忽略文件</li>
-</ul>
-<ul>
+<li>忽略文件<ul>
 <li>在添加时忽略</li>
 <li><code>仅仅作用于未追踪的文件！</code>相当于在未跟踪与跟踪之间加了一层过滤。</li>
 </ul>
-<ul>
-<li>git rm</li>
-</ul>
-<ul>
+</li>
+<li>git rm<ul>
 <li>如果只是想从暂存区删除，使用git rm –cached 即可</li>
 <li>如果希望从暂存区和工作目录一起删除 使用git rm就行</li>
 <li>希望删除所有被跟踪但是在工作目录被删除的文件,使用 git rm $(git ls-files –delete) <code>其中git ls-files列出了所有在暂存区的文件</code></li>
 </ul>
-<ul>
-<li>git commit </li>
-</ul>
-<ul>
+</li>
+<li>git commit <ul>
 <li>根据暂存区内容完成一次提交</li>
 </ul>
-<ul>
+</li>
 <li>git log 查看提交历史，更简单的一种方式是git log –oneline</li>
 <li>git config可以用来设置别名：git config alias.shortname <fullcommand></fullcommand></li>
 <li>git diff 直接输入的话是显示工作目录与暂存区的差异。如果git diff –cached 则是显示暂存区与某次提交之间的差异，默认为HEAD，HEAD指向当前的提交</li>
-<li>git checkout “file” 将文件内容从暂存区复制到工作区。<code>相当于撤销对工作区的修改</code> </li>
-</ul>
-<ul>
+<li>git checkout “file” 将文件内容从暂存区复制到工作区。<code>相当于撤销对工作区的修改</code> <ul>
 <li><strong>git check 在本质上实际就是用来移动HEAD这个指针，而HEAD是指向当前的提交。所以他同时也会把当前的工作目录和暂存区移到你指定的版本。也就是会把那个版本的内容复制到工作目录和暂存区。</strong></li>
 </ul>
-<ul>
+</li>
 <li>git reset HEAD “file” 将文件内容从上次提交复制到暂存区。<code>相当于撤销了对暂存区的操作</code></li>
 <li>git checkout HEAD “file” 直接将提交区文件复制到工作目录。<code>相当于撤销全部改动</code><img src="/2017/02/28/Netease-Java-Curriculum-Git-Database/git_command_flow.png" alt="git work flow" title="git work flow"></li>
 <li>git branch “branchname” 创建一个分支.git branch -d “branchname” 删除一个分支. git branch -v 查看现在所有的分支</li>
-<li>git cheackout </li>
-</ul>
-<ul>
+<li>git cheackout <ul>
 <li>git checkout “branchname” 切换到某个分支</li>
 <li>git checkout -b “branchname” 直接创建一个分支，并切换到他</li>
 <li>git checkout 《reference》 也可以将他切换到任何的引用对象上</li>
 <li>git checkout - 回到上一个分支</li>
 </ul>
-<ul>
+</li>
 <li>当你不用分指名作为参数而把提交版本号作为参数传入git checkout时，这时称为detached head。此时应尽量避免提交东西。以为没有引用会指向这个提交记录。只有HEAD而已。当你HEAD重新回到master时，你刚刚所做的提交都会被视为没有被引用。最后会被git的垃圾回收机制回收。<code>所以当处于分离操作时一般不要做写操作，而是读取他的内容</code></li>
-<li>git reset 将当前分支回退到历史某个版本</li>
-</ul>
-<ul>
+<li>git reset 将当前分支回退到历史某个版本<ul>
 <li>git reset –mixed “commit” （默认）此时他会将当前内容复制到暂存区</li>
 <li>git reset –hard “commit” 同时会将内容复制到工作目录 </li>
 <li>git reset –soft “commit” 暂存区和工作目录不会有任何变化，此时万一是从最新的提交上转移到别的地方，那么那个最新的提交就会丢失了。并且git log已经找不到了。<strong>此时可以使用git reflog来解决。他排出了你HEAD切换分支的路径，那么你就可以通过版本号再次定位到那个最新的分支</strong></li>
 </ul>
-<ul>
-<li>使用捷径 </li>
-</ul>
-<ul>
+</li>
+<li>使用捷径 <ul>
 <li>A^表示A上的父提交</li>
 <li>A~n 表示A之前的第n次提交</li>
 </ul>
-<ul>
-<li>git stash save “somemessage”这种情况一般发生在如下情景，就是你在一个分支进行着工作，一直使用着工作区，还没有将改变的内容添加进暂存区，此时突然另一个分支有一个紧急任务需要完成，但是你又没法切换过去因为一旦这样工作区就会被污染，这个命令就给了我们解决办法。她保存了目前的工作目录和暂存区的状态，并返回到干净的工作空间。其实除了之前所说的工作区，暂存区，提交区以外，还有一个就是stash区。</li>
-</ul>
-<ul>
+</li>
+<li>git stash save “somemessage”这种情况一般发生在如下情景，就是你在一个分支进行着工作，一直使用着工作区，还没有将改变的内容添加进暂存区，此时突然另一个分支有一个紧急任务需要完成，但是你又没法切换过去因为一旦这样工作区就会被污染，这个命令就给了我们解决办法。她保存了目前的工作目录和暂存区的状态，并返回到干净的工作空间。其实除了之前所说的工作区，暂存区，提交区以外，还有一个就是stash区。<ul>
 <li>git stash list 查看当前stash里有多少保存的内容</li>
 <li>git stash apply stash@{0}可以让保存的内容重新恢复到我们的工作目录</li>
 <li>git stash drop stash@{0} 将记录从stash区域删除</li>
 <li>stash pop= stash apply+stash drop</li>
 </ul>
-<ul>
-<li>git merge 合并分支 当你在master分支上时直接后面加上你要合并的分支名就好。</li>
-</ul>
-<ul>
+</li>
+<li>git merge 合并分支 当你在master分支上时直接后面加上你要合并的分支名就好。<ul>
 <li>当出现冲突后使用git add，然后git commit一下来完成这次冲突的解决</li>
 </ul>
-<ul>
+</li>
 <li>当你在某个节点创建了分支，然后master分支一直没有移动，而是一直在next分支进行操作，然后进行merge时则不会出现想象的那种两种分支合并的效果，而是会把master分支直接指向next分支。还有一种情况就是没有出冲突，也会这样。如此之后我们的提交历史就会变得线性。但是这样会使得我们看提交历史变得不清晰，如果希望不要变得线性，可以使用git merge “branchname” –no-ff命令</li>
 <li>git tag 为某次提交设置一个不变的别名，如某次发布后版本为v0.3那么可以设置这次提交为git tag v0.3 e39d0b2 很显然，第二个参数就是某次提交的哈希。以后直接使用这个标签名就能访问那个版本。</li>
 <li><strong>git是支持本地协议的，所以我们是可以初始化一个本地的远程服务器的</strong>使用git init ~/git-server –bare</li>
 <li>git push 用于提交到中央仓库，他实际上做的是一个复制的操作，他会把本地的提交历史完整的拷贝一份到远程仓库。</li>
-<li>git remote 对远程仓库进行操作。</li>
-</ul>
-<ul>
+<li>git remote 对远程仓库进行操作。<ul>
 <li>git remote add origin ~/git-server 添加一个别名。 一般会把远程的分支别名取名为origin。而且本地是会和远程仓库一样会有一个origin分支的。</li>
 </ul>
-<ul>
+</li>
 <li>使用git fetch来获取远程仓库的提交历史。一般出现在当你要同步到远程仓库的时，远程仓库在相同的父节点下已经有一个提交，此时会要你先同步远程代码到本地。
 一旦同步，你本地的origin分支就会变化，此时你在git merge origin 一下，然后提交。</li>
 <li>git pull= git fetch + git merge</li>
