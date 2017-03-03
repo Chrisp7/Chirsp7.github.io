@@ -187,7 +187,7 @@
 <li>git clone 克隆一个远程仓库作为本地仓库 <strong>他就等于git init+git remote+git pull</strong></li>
 </ul>
 <h1 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h1><ul>
-<li>我们在使用数据库连接的时候就一行代码conn= DriverManager.getConnection()然而他的背后是非常复杂的
+<li>我们在使用数据库连接的时候就一行代码conn= DriverManager.getConnection()然而他的背后是非常复杂的<img src="/2017/02/28/Netease-Java-Curriculum-Git-Database/connect_to_mysql.png" alt="connect_to_mysql.png" title="">
 因此建立连接的开销很大</li>
 <li>连接池的优势在于使原来创建连接变成了租借连接，并且数据库每次建立一个连接就会创建一个线程，每创建一个线程就会在内存占用一些空间，所以服务器端是要限制最大连接数的，一旦超过了这个连接数就会报异常，重则宕机。这样的反馈方式实在不够友好，我们应该在建立连接的地方就做好限流，起到对后端数据库保护的作用。</li>
 <li>后端数据库连接过多时就会存在更多锁的冲突与检测，加大服务器资源的资源消耗。</li>
