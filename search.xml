@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title><![CDATA[Netease Java Curriculumn Spring Framwork]]></title>
+      <url>http://chrisp7.github.io/2017/03/09/Netease-Java-Curriculumn-Spring-Framwork/</url>
+      <content type="html"><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><ul>
+<li>核心技术<ul>
+<li>IOC 控制反转</li>
+<li>AOP 面向切面编程</li>
+</ul>
+</li>
+<li>IoC容器=ApplicationContext -&gt; org.springframework.context -&gt; spring-context</li>
+<li>初始化容器，获取对象，使用对象</li>
+<li>Bean的作用域有 singleton 和 prototype，分别对应单例和非单例。直接在application-context的bean里面scope设置。spring默认是singleton。需要修改</li>
+<li>Bean生命周期回调，在application-context的bean里面init-method 和 destory-method设置。</li>
+<li><p>spring 读取配置文件的bean这么写 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"headerProperties"</span></span></div><div class="line">        <span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"location"</span> <span class="attr">value</span>=<span class="string">"classpath:header.properties"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>如果注入的是普通的数据类型，直接在bean的constructor-arg属性里面加上name和value即可，如果是注入的bean那么需要加上ref属性。</p>
+</li>
+<li>AOP 优点：代码重用，解耦</li>
+<li>spring aop没有提供属性访问的aop</li>
+<li>需要声明哪些需要做aop操作。</li>
+<li>一些概念<ul>
+<li>Aspect 日志，安全等功能</li>
+<li>join point 函数执行或者属性访问</li>
+<li>advice 在某个函数执行点上要执行的切面功能 <ul>
+<li>before 函数执行之前</li>
+<li>after returning 函数返回之后</li>
+<li>after throwing 函数抛出异常之后</li>
+<li>after finally 函数返回之后</li>
+<li>around 函数执行前后</li>
+</ul>
+</li>
+<li>pointcut 匹配横切目标函数的表达式</li>
+</ul>
+</li>
+<li>spring AOP实现方式 一种是xml,一种是整合AspectJ的注解。</li>
+<li>xmlns - xml namespace缩写 作用于java中的package</li>
+<li>schemalocation就定义了这个xml文件可以有哪些可以使用的元素</li>
+<li></li>
+<li></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Technology </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work_orientated </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Some advices for bodybuilding rookies]]></title>
       <url>http://chrisp7.github.io/2017/02/28/Some-advices-for-bodybuilding-rookies/</url>
       <content type="html"><![CDATA[<blockquote>
