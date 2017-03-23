@@ -106,7 +106,7 @@ AOP 面向切面编程
 IoC容器=ApplicationContext -&amp;gt; org.springframework.context -&amp;gt; spring-context
 初始化容器，获取对象，使用对象
 Bean的作用域有 singleton 和 prototype，分别对应单例和非单例。直接在application-context的bean">
-<meta property="og:updated_time" content="2017-03-17T17:20:31.000Z">
+<meta property="og:updated_time" content="2017-03-22T08:37:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netease Java Curriculumn Spring Framwork">
 <meta name="twitter:description" content="Spring
@@ -477,11 +477,41 @@ Bean的作用域有 singleton 和 prototype，分别对应单例和非单例。�
 </ul>
 </li>
 <li>spring AOP实现方式 一种是xml,一种是整合AspectJ的注解。</li>
-<li>xmlns - xml namespace缩写 作用于java中的package</li>
+<li>xmlns - xml namespace缩写 作用类似于java中的package</li>
 <li>schemalocation就定义了这个xml文件可以有哪些可以使用的元素</li>
-<li></li>
-<li></li>
+<li>如果使用的是annotation，那么一个bean的名字默认是类名首字母小写。<h2 id="Spring-templete"><a href="#Spring-templete" class="headerlink" title="Spring templete"></a>Spring templete</h2></li>
+<li>Spring 访问数据库使用的是jdbcTemplete这个对象，查询使用queryForObject，插入使用update</li>
+<li><p>使用JdbcTemplete需要先将DataSource注入进来 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JdcbTemplete jdbctemplete = <span class="keyword">new</span> JdcbTemplete (DataSource);</div></pre></td></tr></table></figure>
+</li>
+<li><p>传播行为</p>
+<ul>
+<li>事务A调用事务B</li>
+<li>PROPAGATION_MADATORY 必须在一个事务中运行，不存在则抛异常</li>
+<li>PROPAGATION_NEVER不应该在事务中运行，存在则抛出异常</li>
+<li>PROPAGATION_NOT_SUPPORTED不应该在事务中运行，存在则挂起</li>
+<li>PROPAGATION_SUPPORTS 不需要事务，如果有则在事务中运行</li>
+<li>PROPAGATION_REQUIRED 必须在事务中运行，如果不存在，则启动新事物（也是默认的传播行为），内部事务会影响外部事务</li>
+<li>PROPAGATION_NESTED 必须在事务中运行，如果不存在，则启动新事物，与上一个不同的是，事务之间相互不影响（每个事务拥有自己的savepoints）</li>
+<li>PROPAGATION_REQUIRES_NEW 必须在新事物中执行，挂起当前事务（独立physical事务）</li>
 </ul>
+</li>
+<li>声明式事务需要<ul>
+<li>定义一个事务管理器，与datasource相关</li>
+<li>定义事务Advice</li>
+<li>定义pointcut</li>
+</ul>
+</li>
+<li>声明式事务可以有两种实现方式，schema和Annotation<ul>
+<li>schema的话就要配置advisor,pointcut,还要加上一大堆的配置</li>
+<li>Annotation需要在application-context加上一句<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"txManager"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>spring声明式事务管理默认对非检查型异常和运行时异常进行事务回滚，而对检查型异常则不进行回滚操作。<br>那么什么是检查型异常什么又是非检查型异常呢？<br>最简单的判断点有两个：<br>1.继承自runtimeexception或error的是非检查型异常，而继承自exception的则是检查型异常（当然，runtimeexception本身也是exception的子类）。<br>2.对非检查型类异常可以不用捕获，而检查型异常则必须用try语句块进行处理或者把异常交给上级方法处理总之就是必须写代码处理它。所以必须在service捕获异常，然后再次抛出，这样事务方才起效。</p>
+</blockquote>
 
       
     </div>
@@ -682,7 +712,7 @@ Bean的作用域有 singleton 和 prototype，分别对应单例和非单例。�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-templete"><span class="nav-number">1.1.</span> <span class="nav-text">Spring templete</span></a></li></ol></li></ol></div>
             
 
           </div>
